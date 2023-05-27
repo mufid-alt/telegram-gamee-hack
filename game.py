@@ -6,6 +6,51 @@ from random import randint
 
 from core import GameeHacker
 
+# -*- coding: utf-8 -*-
+import curses
+import locale
+locale.setlocale(locale.LC_ALL, "")
+
+# initialize screen
+curses.initscr()  # or curses.wrapper() if you're using exception handling
+screen = curses.newwin(curses.LINES, curses.COLS, 0, 0)
+
+# set encoding
+locale.setlocale(locale.LC_ALL, "")
+
+# get screen dimensions
+height, width = screen.getmaxyx()
+
+# turn off cursor display
+curses.curs_set(0)
+
+# enable color mode
+curses.start_color()
+curses.use_default_colors()
+color_pair = 1
+curses.init_pair(color_pair, curses.COLOR_WHITE, curses.COLOR_MAGENTA)
+
+# calculate y position for text
+y_pos = int(height * 0.1)
+
+# calculate x position for text
+text_x_pos = int((width - len("Made by Hemcker_mufid & Thanks for using my tool #zoro_projects")) / 2)
+
+# print text
+screen.attron(curses.color_pair(color_pair))
+screen.attron(curses.A_BOLD)
+screen.addstr(y_pos, text_x_pos, "Made by Hemcker_mufid & Thanks for using my tool #zoro_projects", curses.color_pair(color_pair) | curses.A_BOLD)
+screen.attroff(curses.A_BOLD)
+
+# refresh screen
+screen.refresh()
+
+# wait for user input
+screen.getch()
+
+# cleanup
+curses.endwin()
+
 __help__ = f"""Usage:
 {__file__} [--argument] [value]
 
