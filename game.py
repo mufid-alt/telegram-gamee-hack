@@ -6,45 +6,23 @@ from random import randint
 
 from core import GameeHacker
 
-# -*- coding: utf-8 -*-
-import curses
-import locale
-locale.setlocale(locale.LC_ALL, "")
+import os
 
-def main(screen):
-    # get screen dimensions
-    height, width = screen.getmaxyx()
+def center_print(text):
+    # Get terminal dimensions
+    rows, columns = os.popen('stty size', 'r').read().split()
 
-    # turn off cursor display
-    curses.curs_set(0)
+    # Calculate position of text
+    x_pos = int((int(columns) - len(text)) / 2)
 
-    # enable color mode
-    curses.start_color()
-    curses.use_default_colors()
-    color_pair = 1
-    curses.init_pair(color_pair, curses.COLOR_WHITE, curses.COLOR_MAGENTA)
+    # Print text centered on screen
+    print(' ' * x_pos + text)
 
-    # calculate y position for text
-    y_pos = int(height * 0.1)
+# Call function with desired text
+center_print("Made by hemcker_mufid")
+center_print("Thanks for using my tool #zoro_projects")
 
-    # calculate x position for text
-    text_x_pos = int((width - len("Thanks for using my tool #zoro_projects")) / 2)
 
-    # print text
-    screen.attron(curses.color_pair(color_pair))
-    screen.attron(curses.A_BOLD)
-    screen.addstr(y_pos, text_x_pos, "Thanks for using my tool #zoro_projects", curses.color_pair(color_pair) | curses.A_BOLD)
-    screen.attroff(curses.A_BOLD)
-
-    # refresh screen
-    screen.refresh()
-
-    # wait for user input
-    screen.getch()
-
-# run the script using curses.wrapper()
-if __name__ == '__main__':
-    curses.wrapper(main)
 
 __help__ = f"""Usage:
 {__file__} [--argument] [value]
