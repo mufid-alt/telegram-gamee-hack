@@ -67,9 +67,6 @@ Args                 Description                       Default
 
 """
 
-# project_info 
-print("Made by hemcker_mufid")
-print("thanks for using mah tool")
 
 class Cli:
 
